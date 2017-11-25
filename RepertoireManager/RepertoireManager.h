@@ -27,8 +27,7 @@ private:
 	RepertoireManager& operator=(RepertoireManager&& other)		 = default;
 
 	//--- contains all of the reperoire music
-	//std::vector<ISong*> m_repertoire;
-	std::vector<boost::shared_ptr<ISong>> m_repertoire2;
+	std::vector<boost::shared_ptr<ISong>> m_repertoire;
 	
 	//--- filename to use
 	//const std::string m_fileName = std::string(boost::archive::tmpdir()) + "\\songs.txt";
@@ -41,10 +40,9 @@ private:
 	{
 		// must register all of the child types to make sure the archive 
 		// contains the correct information.
-		//ar.register_type(static_cast<Guitar*>nullptr);
 		ar.register_type(static_cast<boost::shared_ptr<Guitar>>nullptr);
 		// append the repertoire to the arhive
-		ar & m_repertoire2;
+		ar & m_repertoire;
 	}
 public:
 	~RepertoireManager() {};
