@@ -18,7 +18,6 @@ private:
 	// make all constructors/assignments private
 	RepertoireManager() 
 	{
-
 	}
 	RepertoireManager(const RepertoireManager& other) = default;
 	RepertoireManager(RepertoireManager&& other)      = default;
