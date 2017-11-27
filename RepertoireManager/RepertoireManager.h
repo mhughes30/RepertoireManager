@@ -9,6 +9,21 @@
 #include "archives.h"
 
 
+enum class SONG_CAT : uint8_t
+{
+	COMPOSER = 0,
+	TITLE,
+	INSTRUMENT,
+	DURATION,
+	YEAR,
+	INSTR_TYPE,
+	GENRE,
+	GUITAR_CAPO,
+	GUITAR_TUNE,
+	MAX
+};
+
+
 // Appends/Removes items to/from the repertoire
 // Archives/Extracts the repertoire from permanent storage
 // This is a Singleton
@@ -31,6 +46,10 @@ private:
 	//--- filename to use
 	//const std::string m_fileName = std::string(boost::archive::tmpdir()) + "\\songs.txt";
 	const std::string m_fileName = ".\\Resources\\songs.txt";
+
+	//--- used for getting heading labels
+	using SongCatToStrMap = std::map<SONG_CAT, std::string>;
+	static const SongCatToStrMap getStrFromSongCat;
 
 	//--- boost serialization
 	friend class boost::serialization::access;
@@ -68,7 +87,12 @@ public:
 	void   WriteRepertoireToDisk(void);
 	// get the current archive size
 	size_t GetRepertoireSize(void);
+	// get a label to use for a heading, to format a display/file
+	std::string GetHeadingLabel(SONG_CAT category);
+	// extracts the record from "song", and places it into "songData" for string representation of all data
+	void ExtractSongRecord( const boost::shared_ptr<ISong>& song, std::map<SONG_CAT, std::string>& songData );
 
+	// iterators to the song repertoire
 	std::vector<boost::shared_ptr<ISong>>::const_iterator cbegin();
 	std::vector<boost::shared_ptr<ISong>>::const_iterator cend();
 };
