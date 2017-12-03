@@ -84,7 +84,7 @@ public:
 	// read the archive from disk
 	void   ReadRepertoireFromDisk(void);
 	// write the archive to disk
-	void   WriteRepertoireToDisk(void);
+	bool   WriteRepertoireToDisk(void);
 	// get the current archive size
 	size_t GetRepertoireSize(void);
 	// get a label to use for a heading, to format a display/file
