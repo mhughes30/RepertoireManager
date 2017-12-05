@@ -3,7 +3,6 @@
 #ifndef SONG_H
 #define SONG_H
 
-#include <iostream>
 #include <string>
 #include <array>
 #include <map>
@@ -236,6 +235,7 @@ public:
 	virtual void			GetComposer(Human& hum);
 	virtual std::string		GetTitle(void);
 	virtual void			GetDuration(Duration& dur);
+	virtual uint16_t		GetDuration(void);
 	virtual INSTRUMENTATION GetInstrumentation(void);
 	virtual INSTRUMENT		GetInstrument(void);
 

@@ -240,6 +240,11 @@ void ISong::SetDuration(std::unique_ptr<Duration>& dur)
 	m_duration = *(dur.get());
 }
 
+uint16_t ISong::GetDuration(void)
+{
+	return m_duration.GetSeconds();
+}
+
 void ISong::GetDuration(Duration& dur)
 {
 	dur = m_duration;
