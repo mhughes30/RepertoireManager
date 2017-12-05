@@ -41,14 +41,36 @@ uint32_t RandomSet::GetRandomIndex(uint32_t lowRange, uint32_t highRange)
 }
 
 
+//----------------- IsRepSizeSufficient -------------------//
+bool RandomSet::IsRepSizeSufficient(void)
+{
+	// the repertoire size must be at least this much larger than the requested set list
+	const float BUFF_FACTOR = 1.2f;
+
+	RepertoireManager* repMgr = RepertoireManager::GetInstance();
+
+	float minRepSizeMin = BUFF_FACTOR * static_cast<float>(m_totalMin);
+	float actRepSizeMin = static_cast<float>(repMgr->GetRepertoireDurationMin());
+
+	if (actRepSizeMin <= minRepSizeMin)
+		return false;
+
+	return true;
+}
+
+
 //----------------- BuildSetList -------------------//
 // returns true/false if building of the list succeded/failed
 bool RandomSet::BuildSetList(void)
 {
-	bool didSucceed = true;
-	std::unordered_set<uint32_t> indexSet;	// stores indexes 
+	std::unordered_set<uint32_t> indexSet;	// stores indexes to songs 
 
 	RepertoireManager* repMgr = RepertoireManager::GetInstance();
+
+	if (this->IsRepSizeSufficient() == false)
+	{
+		return false;
+	}
 
 	const uint32_t lowerRange = 0;
 	const uint32_t upperRange = static_cast<uint32_t>(repMgr->GetRepertoireSize());
@@ -80,7 +102,7 @@ bool RandomSet::BuildSetList(void)
 		curDurSec += pSong->GetDuration();
 	}
 
-	return didSucceed;
+	return true;
 }
 
 

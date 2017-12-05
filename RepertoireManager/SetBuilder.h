@@ -64,6 +64,7 @@ private:
 class ISetMaker
 {
 public:
+	virtual ~ISetMaker() {};
 	virtual void SetSetListStruct(SetListData& songVec);
 	virtual void SetDuration(uint16_t min);
 	// returns true if build succeeded; false otherwise
@@ -88,6 +89,7 @@ private:
 	std::mt19937		m_randEng;	// randum number engine (MT)
 
 	uint32_t GetRandomIndex(uint32_t lowRange, uint32_t highRange);
+	bool     IsRepSizeSufficient(void);
 };
 
 

@@ -62,6 +62,8 @@ private:
 		// append the repertoire to the arhive
 		ar & m_repertoire;
 	}
+
+	uint32_t m_totalDuration_min= 0;
 public:
 	~RepertoireManager() {};
 
@@ -76,17 +78,14 @@ public:
 
 		return m_instance;
 	}
+		
+	void	 EraseSong(uint16_t index);			// erase song from the archive	
+	void	 AppendSong(ISong& song);			// append song to the archive	
+	void	 ReadRepertoireFromDisk(void);		// read the archive from disk	
+	bool	 WriteRepertoireToDisk(void);		// write the archive to disk	
+	size_t	 GetRepertoireSize(void);			// get the current archive size	
+	uint32_t GetRepertoireDurationMin(void);	// get the current archive duration in Min
 
-	// erase song from the archive
-	void   EraseSong(uint16_t index);
-	// append song to the archive
-	void   AppendSong(ISong& song);
-	// read the archive from disk
-	void   ReadRepertoireFromDisk(void);
-	// write the archive to disk
-	bool   WriteRepertoireToDisk(void);
-	// get the current archive size
-	size_t GetRepertoireSize(void);
 	// get a label to use for a heading, to format a display/file
 	std::string GetHeadingLabel(SONG_CAT category);
 	// extracts the record from "song", and places it into "songData" for string representation of all data
