@@ -28,7 +28,7 @@ void SetListHtmlWriter::CreateTableTitle(const std::string& titleStr, uint16_t d
 }
 
 //----------------- WriteSetListToHtml -------------------//
-bool SetListHtmlWriter::WriteSetListToHtml(SetListConstIter begin, SetListConstIter end, uint16_t duration)
+bool SetListHtmlWriter::WriteSetListToHtml(SetListConstIter begin, SetListConstIter end, uint32_t duration)
 {
 	if (false == m_file.is_open())
 	{
@@ -122,7 +122,7 @@ void ISetMaker::SetSetListStruct(SetListData& songVec)
 
 
 //----------------- SetDuration -------------------//
-void ISetMaker::SetDuration(uint16_t& min)
+void ISetMaker::SetDuration(uint32_t& min)
 { 
 	m_totalMin = &min; 
 }

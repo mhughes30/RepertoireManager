@@ -31,7 +31,7 @@ public:
 	SetListBuilder() = delete;
 
 	// must set targetDuration upon creation
-	SetListBuilder( uint16_t targetDuration_min ) : m_totalDuration_min(targetDuration_min)
+	SetListBuilder( uint32_t targetDuration_min ) : m_totalDuration_min(targetDuration_min)
 	{
 		m_builder.SetDuration( m_totalDuration_min );
 		m_builder.SetSetListStruct(m_setList);
@@ -42,12 +42,12 @@ public:
 	SetListConstIter cend() { return m_setList.cend(); }
 	
 	void	 SetTotalDuration(uint16_t min) { m_totalDuration_min = min; }
-	uint16_t GetTotalDuration( void ) { return m_totalDuration_min; }
+	uint32_t GetTotalDuration( void ) { return m_totalDuration_min; }
 	void	 BuildSetList(void) { m_builder.BuildSetList(); }
 	
 private:
 	songT		m_builder;
-	uint16_t	m_totalDuration_min;
+	uint32_t	m_totalDuration_min;
 	SetListData m_setList;
 };
 
@@ -62,7 +62,7 @@ public:
 	SetListHtmlWriter(std::string fileName) : m_fileName(fileName), m_file(fileName)
 	{}
 
-	bool WriteSetListToHtml(SetListConstIter begin, SetListConstIter end, uint16_t duration = 0);
+	bool WriteSetListToHtml(SetListConstIter begin, SetListConstIter end, uint32_t duration = 0);
 
 private:
 	void CreateTitle(const std::string& titleStr);
@@ -88,11 +88,11 @@ class ISetMaker
 public:
 	virtual ~ISetMaker() {};
 	virtual void SetSetListStruct(SetListData& songVec);
-	virtual void SetDuration(uint16_t& min);
+	virtual void SetDuration(uint32_t& min);
 	// returns true if build succeeded; false otherwise
 	virtual bool BuildSetList(void) { return false; }
 protected:
-	uint16_t*	 m_totalMin;
+	uint32_t*	 m_totalMin;
 	SetListData* m_setVect;
 };
 
