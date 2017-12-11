@@ -233,6 +233,7 @@ public:
 
 	virtual uint16_t		GetYear(void);
 	virtual void			GetComposer(Human& hum);
+	virtual std::string		GetComposer(void);
 	virtual std::string		GetTitle(void);
 	virtual void			GetDuration(Duration& dur);
 	virtual uint16_t		GetDuration(void);

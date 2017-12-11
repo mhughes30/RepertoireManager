@@ -234,6 +234,11 @@ void ISong::GetComposer(Human& hum)
 	hum = m_composer;
 }
 
+std::string	ISong::GetComposer(void)
+{
+	return m_composer.GetName(Human::NAME::LAST);
+}
+
 //------------ Get/Set Duration ------------//
 void ISong::SetDuration(std::unique_ptr<Duration>& dur)
 {

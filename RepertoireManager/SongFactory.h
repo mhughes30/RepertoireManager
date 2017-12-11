@@ -3,8 +3,8 @@
 #ifndef SONG_FACTORY_H
 #define SONG_FACTORY_H
 
+#if 0
 #include "Song.h"
-
 
 // TODO: use this later for generating set lists, and when more song-types are added
 class SongFactory
@@ -37,7 +37,6 @@ public:
 	}
 };
 
-
-
+#endif
 
 #endif
